@@ -1,0 +1,23 @@
+name: Deploy static site to project-3 folder
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Deploy to website-bearnson.org
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.DEPLOY_KEY }}
+          external_repository: Bearzz/website-bearnson.org
+          publish_branch: gh-pages
+          publish_dir: ./
+          destination_dir: project-3
